@@ -663,7 +663,7 @@ def save_connection_stats():
             "AND end_time < datetime('now','-6 hours')"
         )
     except Exception as e:
-        log_message(f\"Error pruning old stats: {e}\", \"ERROR\")
+        log_message(f"Error pruning old stats: {e}", "ERROR")
 
     for stat in stats:
         server_name = stat.get('svname', '')
@@ -672,7 +672,11 @@ def save_connection_stats():
         bytes_out = int(stat.get('bout', 0) or 0)
 
         cursor.execute(
-            \"\"\"\n            INSERT INTO connection_stats (server_name, connections, bytes_in, bytes_out)\n            VALUES (?, ?, ?, ?)\n        \"\"\",\n            (server_name, connections, bytes_in, bytes_out),
+            """
+            INSERT INTO connection_stats (server_name, connections, bytes_in, bytes_out)
+            VALUES (?, ?, ?, ?)
+            """,
+            (server_name, connections, bytes_in, bytes_out),
         )
 
     conn.commit()
