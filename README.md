@@ -70,14 +70,18 @@ Chat ID: @GetChatID_IL_BOT مثلا ازین ربات میتونید چت ای �
 
 📂 ساختار فایل‌ها و مسیرها
 ```
-/etc/haproxy/haproxy.cfg	فایل پیکربندی اصلی HAProxy
-/etc/haproxy/telegram_bot_config.json مشخصات ربات تلگرام و چت ایدی که تعریف میکنید 
-/etc/haproxy/check_vless_e2e.sh اسکریپت برسی وضعیت سرور ها
-/usr/local/bin/haproxy_telegram_bot.py فایل پایتون ربات مانیتورینگ
-/var/lib/haproxy/stats.db دیتابیس ذخیره آمار ۶ ساعته
-/etc/systemd/system/haproxy-failover.service سرویس مدیریت خودکار failover
-/etc/systemd/system/haproxy-telegram-bot.service سرویس مدیریت تلگرام
-/etc/systemd/system/haproxy.service مدیریت سرویس haproxy
+LOG_FILE="/var/log/haproxy_stack_installer.log"
+HAPROXY_CFG="/etc/haproxy/haproxy.cfg"
+CHECK_SCRIPT="/etc/haproxy/check_vless_e2e.sh"
+FAILOVER_SCRIPT="/usr/local/bin/haproxy_failover_daemon_final.sh"
+BOT_SCRIPT="/usr/local/bin/haproxy_telegram_bot.py"
+BOT_SERVICE="/etc/systemd/system/haproxy-telegram-bot.service"
+FAILOVER_SERVICE="/etc/systemd/system/haproxy-failover.service"
+LAST_STATES_FILE="/var/lib/haproxy/telegram_last_states.json"
+DB_FILE="/var/lib/haproxy/stats.db"
+BOT_CONFIG="/etc/haproxy/telegram_bot_config.json"
+PKGS=(haproxy socat curl python3 python3-pip python3-requests)
+/etc/systemd/system/haproxy.service
 ```
 📊 پنل وضعیت HAProxy
 در انتهای نصب، اطلاعات پنل به صورت زیر نمایش داده می‌شود:
