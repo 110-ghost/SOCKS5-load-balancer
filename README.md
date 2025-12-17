@@ -39,6 +39,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/110-ghost/SOCKS5-load-balancer
 دسترسی: کاربر root.
 
 پکیج‌ها: haproxy, socat, python3, python3-pip, sqlite3 (توسط اسکریپت نصب می‌شوند).
+<br>
+<br>
 
 
 
